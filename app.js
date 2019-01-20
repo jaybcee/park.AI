@@ -6,6 +6,7 @@ var logger = require('morgan');
 const bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
+var vars = require("/vars.js")
 var server = require('http').Server(app);
 
 
@@ -53,7 +54,7 @@ app.use(function(err, req, res, next) {
 });
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://main_user:Hackatown2019@ds159574.mlab.com:59574/hackatown');
+mongoose.connect(vars.mon);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -124,7 +125,7 @@ function findCars(){
 }
 
 var twilio = require('twilio');
-var client = new twilio("ACc06048dbe0998b58b252e99eed4682a2", "53fe941654e5e0c8bd69464356aa9d0a");
+var client = new twilio(ars.first, vars.second);
 
 var spots = 0;
 
@@ -133,7 +134,7 @@ function messageGo(bod, num){
   client.messages.create({
       body: bod,
       to: num, 
-      from: '+15146137260'
+      from: vars.fromm
   })
   .then((message) => console.log(message.sid))
   .done();
@@ -147,11 +148,11 @@ module.exports.number = number;
 
 function vision(index){
   return new Promise((resolve, reject) => {
-    var form = {image: "https://hackatown2019.herokuapp.com/images/test" + index + ".jpg"};
+    var form = {image: vars.imag + index + ".jpg"};
     form = JSON.stringify(form);
     request({
       headers: {
-        "X-Access-Token": "3TN6kvVNjrKLxIojQ1dwTmRaS3kuWkmHUWEH",
+        "X-Access-Token": vars.token,
         "Content-Type": 'application/json'
       },
       uri: 'https://dev.sighthoundapi.com/v1/recognition?objectType=vehicle',
