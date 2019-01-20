@@ -1,0 +1,140 @@
+body{
+    font-family: 'Viga', sans-serif;
+    background: #3e4444;
+    color:whitesmoke;
+}
+
+/* font updated */
+
+/*causing navbar issue*/
+
+#textOverlay{ 
+    position: absolute;
+    left:0;
+    top: 0;
+    font-size: 2em;
+    padding: 15%;
+    
+}
+
+#risotto{
+    font-size:2em;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 0px;
+    margin: 5px 0 5px;
+    box-sizing: border-box;
+  }
+
+  input[type=number]{
+    width: 100%;
+    padding: 0px;
+    margin: 5px 0 5px;
+    box-sizing: border-box;
+  }
+  input[type=submit]{
+      padding-top: 4px;
+  }
+  
+
+
+.jumbotron{
+    height: 360px;
+    background-size:cover;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Lower_Manhattan_from_Brooklyn_May_2015_panorama.jpg/1280px-Lower_Manhattan_from_Brooklyn_May_2015_panorama.jpg');
+    background-repeat: none;
+    filter: blur(5px);
+   
+}
+
+
+#spots{
+    text-align: center;
+    background:white;
+    color:black;
+    border: 2px solid black;
+    padding:10px;
+
+}
+#spots span{
+    background: white;
+    height:40px;
+    margin-left: 20px;
+    text-align: center;
+    color:black;
+    width:0px;
+    display:inline-block;
+    transition: 0.25s linear;
+    opacity: 0;
+}
+
+
+
+#pay{
+    text-align: center;
+    background:white;
+    color:black;
+    padding:10px;
+    border: 2px solid black;
+}
+
+#pay span{
+    background: white;
+    height:40px;
+    margin-left: 20px;
+    text-align: center;
+    color:black;
+    width:0px;
+    display:inline-block;
+    transition: 0.25s linear;
+    opacity: 0;
+}
+
+#myForm{
+    text-align: left;
+    border-radius: 25px;
+    margin: 20px;
+}
+
+#replaceMe{
+    display:none;
+}
+
+
+
+video{
+    padding:50px;
+    display: block;
+    margin: 0 auto;
+    width:640px
+    
+    
+}
+@media (max-width: 767px) {
+    .hidden-xs {
+      display: none !important;
+    }
+  }
+
+#spots:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    background:whitesmoke
+}
+
+#pay:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    background:whitesmoke
+}
+
+form{
+    background:#222930;
+    padding-top:10px;
+    padding-bottom:10px;
+    
+}
+section{
+    margin: 15px;
+}
+
