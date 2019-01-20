@@ -6,7 +6,7 @@ var logger = require('morgan');
 const bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
-var vars = require("/vars.js")
+var vars = require(path.join(__dirname, 'varser.js'));
 var server = require('http').Server(app);
 
 
@@ -125,7 +125,7 @@ function findCars(){
 }
 
 var twilio = require('twilio');
-var client = new twilio(ars.first, vars.second);
+var client = new twilio(vars.first, vars.second);
 
 var spots = 0;
 
