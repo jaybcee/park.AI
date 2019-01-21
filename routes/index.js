@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var twilio = require('twilio');
-var client = new twilio("ACc06048dbe0998b58b252e99eed4682a2", "53fe941654e5e0c8bd69464356aa9d0a");
-const MessagingResponse = require('twilio').twiml.MessagingResponse;
 var big = require('../app.js');
+var vars = require('../varser.js');
+var client = new twilio(vars.first, vars.second);
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 var app = require('express')();
 var bodyParser = require('body-parser');
 var cors = require('cors')
@@ -20,7 +21,7 @@ function messageGo(bod, num){
   client.messages.create({
       body: bod,
       to: num, 
-      from: '+15146137260'
+      from: vars.fromm
   })
   .then((message) => console.log(message.sid))
   .done();
@@ -33,7 +34,7 @@ function delayedMessageGo(bod, num, time){
     client.messages.create({
         body: bod,
         to: num, 
-        from: '+15146137260'
+        from: vars.fromm
     })
     .then((message) => console.log(message.sid))
     .done();
@@ -58,7 +59,7 @@ router.post('/user', function(req, res, next) {
   big.createUser(req.body.name, new Date(), (parseInt(req.body.time)*1000), req.body.phoneNum);
   //time here is in milliseconds for the purpose of the demo
   var numbero = req.body.phoneNum.split(" ").join("");
-  if (numbero == "5146321797" || numbero == "5148823346" || numbero == "5147967305"){
+  if (numbero == vars.one || numbero == vars.two || numbero == vars.three){
   delayedMessageGo("Your parking is expiring soon! Please make your way to your car, or answer \"add\" followed by the amount of minutes you would like to add to your parking session.", "+1" + numbero , (parseInt(req.body.time)*1000))
   }
 res.send(200); 
@@ -74,7 +75,7 @@ router.post('/test', function(req, res, next) {
 
 router.post('/sms', function(req, res, next) {
   const twiml = new MessagingResponse();
-  console.log("got a response")
+  console.log("got a response");
 
   var msg = req.body.Body;
   console.log(msg)
@@ -85,7 +86,7 @@ router.post('/sms', function(req, res, next) {
         }
         else if(msg.split(" ").length > 1){
           var msgIntoNum = parseInt(msg.split(" ")[1]);
-          twiml.message("I'll add " + msgIntoNum + " minutes to your parking session.");
+          twiml.message("I'll add " + msgIntoNum + " hours to your parking session.");
           delayedMessageGo("Your parking extension is going to end, please go to your car or reply with \"add\"", req.body.From, msgIntoNum*1000)
         }
 
