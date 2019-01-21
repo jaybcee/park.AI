@@ -48,13 +48,13 @@ router.get('/', function(req, res, next) {
 
 /* GET num page. */
 router.get('/num', function(req, res, next) {
-  res.send({number:big.number});
+  res.send({number: arr[big.number]});
 });
 
 /*post user page. */
 router.post('/user', function(req, res, next) {
-  console.log("user route")
-  console.log(req.body)
+  console.log("user route");
+  console.log(req.body);
   console.log(req.body.name);  
   big.createUser(req.body.name, new Date(), (parseInt(req.body.time)*1000), req.body.phoneNum);
   //time here is in milliseconds for the purpose of the demo
@@ -69,7 +69,8 @@ res.send(200);
 router.post('/test', function(req, res, next) {
   console.log(req.body)
   console.log("past number= " + big.number)
-  big.vision(req.body.index).then(function(num){big.number=num});
+  big.number = req.body.index;
+  //big.vision(req.body.index).then(function(num){big.number=num});
   res.send({nb:1});
 });
 
@@ -109,6 +110,6 @@ router.post('/sms', function(req, res, next) {
   res.end(twiml.toString());
 });
 
-
+var arr = [4,9,14,6,0,3,5,30,14];
 
 module.exports = router;
