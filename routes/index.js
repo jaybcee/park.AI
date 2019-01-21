@@ -48,7 +48,7 @@ router.get('/', function(req, res, next) {
 
 /* GET num page. */
 router.get('/num', function(req, res, next) {
-  res.send({number: arr[big.number]});
+  res.send({number: big.number});
 });
 
 /*post user page. */
@@ -69,8 +69,7 @@ res.send(200);
 router.post('/test', function(req, res, next) {
   console.log(req.body)
   console.log("past number= " + big.number)
-  big.number = req.body.index;
-  //big.vision(req.body.index).then(function(num){big.number=num});
+  big.vision(req.body.index).then(function(num){big.number=num});
   res.send({nb:1});
 });
 
@@ -110,6 +109,6 @@ router.post('/sms', function(req, res, next) {
   res.end(twiml.toString());
 });
 
-var arr = [4,9,14,6,0,3,5,30,14];
+
 
 module.exports = router;
